@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poster Evaluation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ecef4475;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #080808;
+        }
+
+        form {
+            background-color: #dcebd1;
+            border: 1px solid #171414;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="file"] {
+            border: 1px solid #000000;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: #dea5f3;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #6a5898;
+        }
+        .result {
+           background-color: #7e98a1;
+           border: 1px solid #171414;
+           border-radius: 5px;
+           padding: 20px;
+           max-width: 400px;
+           margin: 20px auto;
+           opacity: 0; /* Initially hidden */
+           transition: opacity 0.5s ease-in;
+        }
+
+        .result.show {
+           opacity: 1;
+           transition: opacity 0.5s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <h1>Poster Evaluation</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="posterImage">Upload Poster Image:</label>
+        <input type="file" name="poster" id="posterImage" accept="image/*" required>
+        <br>
+        <label for="evaluation">Evaluation:</label>
+        <br>
+        <button type="submit">Submit Poster</button>
+    </form>
+    <div class="result" id="resultSection">
+        <!-- Display the analysis results here -->
+        <p>{{ average_rgb_result }}</p>
+        <p>{{ indentation_result }}</p>
+        <p>{{ size_dimension_result }}</p>
+        <p>{{ clarity_result }}</p>
+        <p>{{ clutter_result }}</p>
+    </div>
+    <script>
+        // Function to show the result section with a fade-in effect
+        function showResults() {
+            const resultSection = document.querySelector('.result');
+            resultSection.classList.add('show');
+        }
+    </script>
+</body>
+</html>
